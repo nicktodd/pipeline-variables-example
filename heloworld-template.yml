@@ -5,6 +5,7 @@ Parameters:
     Description: Environment to deploy to
     Type: String
   
+
 Resources:
   HelloWorldFunction:
     Type: "AWS::Lambda::Function"
@@ -27,7 +28,12 @@ Resources:
       MemorySize: 256
       Runtime: python3.7
       Timeout: 60
+      Tags: 
+        - 
+          Key: "Environment"
+          Value: !Ref Environment
 
+    
 
   HelloWorldLambdaRole:
     Type: AWS::IAM::Role
@@ -46,5 +52,5 @@ Resources:
 
 Outputs:
   OutputFromCFN:
-    Value: 'Hello world deployed!'
+    Value: !Join [' ' ,[  'Template completed with Environment set to ', !Ref Environment ]]
   
