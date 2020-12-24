@@ -1,6 +1,6 @@
 {
     "Parameters" : {
-      "environment" : "TEST"
+      "Environment" : "TEST"
       
     }
 }
