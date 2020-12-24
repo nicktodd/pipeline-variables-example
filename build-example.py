@@ -13,3 +13,4 @@ print("setting an output variable named environment to the value of DEV")
 os.putenv("environment", "DEV")
 
 
+    
