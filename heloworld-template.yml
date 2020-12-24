@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  Environment:
+    Description: Environment to deploy to
+    Type: String
+  
+Resources:
+  HelloWorldFunction:
+    Type: "AWS::Lambda::Function"
+    Properties: 
+      FunctionName: HelloWorld
+      Handler: "index.handler" 
+      Role: !GetAtt HelloWorldLambdaRole.Arn
+      Code:
+        ZipFile: |
+          def handler(event, context):
+            response = {
+              'isBase64Encoded': False,
+              'statusCode': 200,
+              'headers': {},
+              'multiValueHeaders': {},
+              'body': 'Hello, World!'
+            }
+            return response
+      Description: AWS Lambda function
+      MemorySize: 256
+      Runtime: python3.7
+      Timeout: 60
+
+
+  HelloWorldLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service:
+                - 'lambda.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Path: '/'
+
+
+Outputs:
+  OutputFromCFN:
+    Value: 'Hello world deployed!'
+  

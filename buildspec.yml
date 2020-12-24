@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      #- pip install --upgrade --force-reinstall . awscli
+      
+  
+  build:
+    commands:
+      - python build-example.py
+      - echo "Ran the sample script that accesses and sets variables in the build step."
+ 
