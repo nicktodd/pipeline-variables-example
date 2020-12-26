@@ -7,8 +7,6 @@ phases:
       
   build:
     commands:
-      - chmod u+x codebuild-env.sh
-      - ./codebuild-env.sh
       - python build-example.py
       - echo "Ran the sample script that accesses and sets variables in the build step."
  
